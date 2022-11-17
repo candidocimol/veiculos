@@ -1,4 +1,4 @@
-    <div style="padding:20px; display:flex; "> 
+    <div style="padding:20px; display:grid; "> 
     <?php
         require_once "dataBase.php";
         $sql="SELECT * FROM veiculo";
