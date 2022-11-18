@@ -1,3 +1,6 @@
+<?php
+include "config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
     <div style="width:60vw; margin:0 auto;">
             <h1>Login</h1>
             <hr/>
-            <form method="post" action="http://localhost/cimol/veiculos/autenticar.php">
+            <form method="post" action="<?php echo URL_BASE?>autenticar.php">
     <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
