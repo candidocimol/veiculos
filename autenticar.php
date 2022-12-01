@@ -24,12 +24,16 @@ if(isset($_POST['submit'])){
         $_SESSION['user']=$user;
         
         #mensagem de sucesso
-        $_SESSION['msg']="Sucesso!";
+        $msg['msg']="Sucesso!";
+        $msg['class']="success";
+        $_SESSION['msgs'][]=$msg;
       }
      }else{
       #não
         #mensagem de falha
-        $_SESSION['msg']="Falha!";
+        $msg['msg']="Falhao!";
+        $msg['class']="danger";
+        $_SESSION['msgs'][]=$msg;        
     }  
 }   
  

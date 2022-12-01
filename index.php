@@ -6,6 +6,7 @@
  include "config.php";
  include DIR_BASE."/template/header.php";
  include "./template/nav.php";
+ include "./template/msg.php";
 ?>
 <main>
     <div style="padding:15px">
