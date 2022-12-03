@@ -1,65 +1,68 @@
 <?php
+
  session_start();
- if(!isset($_SESSION['user'])){
-    header("Location: login.php"); 
- }
  include "config.php";
- include DIR_BASE."/template/header.php";
- include "./template/nav.php";
- include "./template/msg.php";
+
+ if(!isset($_SESSION['user'])){
+   // header("Location:?pagina=usuarios&acao=login"); 
+   echo 1;
+   if(!isset($_POST['submit'])){
+    echo 2;
+        include "./paginas/usuarios/login.php";
+   }else{
+    echo 3;
+       include "./paginas/usuarios/autenticar.php";
+   }
+   
+ }else{
+    include DIR_BASE."/template/header.php";
+    include "./template/nav.php";
+    include "./template/msg.php";
+
+ 
+ 
+ 
 ?>
 <main>
-    <div style="padding:15px">
-        <form method="POST"  enctype="multipart/form-data">
-        <div class="row g-3">
-            <div class="col-sm-4">
-                <input type="text" name="fabricante" class="form-control" placeholder="Fabricante" aria-label="fabricante">
-            </div>
-            <div class="col-sm-4">
-                <input type="text" name="modelo" class="form-control" placeholder="Modelo" aria-label="modelo">
-            </div>
-            <div class="col-sm-4">
-                <input type="text" name="ano" class="form-control" placeholder="Ano" aria-label="ano">
-            </div>
-            <div class="col-sm-4">
-                <input type="text" name="placa" class="form-control" placeholder="Placa" aria-label="padding">
-            </div>
-            <div class="col-sm-4">
-                <input type="file" name="foto" class="form-control" >
-            </div>
-        </div>
-        <div class="row g-3">
-            <input type="submit" name="enviar" value="Enviar" class="btn btn-primary" />
-        </div>
-
-        </form>
-    </div>
-    <hr/>
-   
     <?php
-        if(isset($_POST['enviar'])){
-            $arquivo="./imagens/".$_FILES["foto"]["name"];
-            if(move_uploaded_file($_FILES["foto"]["tmp_name"], $arquivo)){
-                
-                require_once "dataBase.php";
-                #executar consulta no BD
-                $sql="INSERT INTO veiculo (fabricante, modelo, placa, ano, foto)
-                VALUES 
-                ('{$_POST['fabricante']}','{$_POST['modelo']}','{$_POST['placa']}',
-                '{$_POST['ano']}','{$arquivo}')";
-
-                echo $sql;
-
-                if(!$con->query($sql)){
-                    echo "Falha ao salvar registro!";
-                }
-
+    if(isset($_GET['path'])){
+        $path=explode("/", $_GET['path']);
+        $pagina=$path[0];
+        if(isset($path[1])){
+            $acao=$path[1];
+            if(isset($path[2])){
+                $parametro=$path[2];
+            }else{
+                $parametro=null;
             }
+        }else{
+            $acao =null;
+            $parametro=null;
+        }
+    }else{
+        $pagina=null;
+    }
+
+    if($pagina){
+        if($pagina=="veiculos"){
+            include "./paginas/veiculos.php";
+        }else if($pagina=="contato"){
+            include "./paginas/contato.php";
+        }else if($pagina=="usuarios"){
+            include "./paginas/usuarios.php";
+        }else{
+            include "./paginas/erro_404.php";
         }
 
-        include "listaVeiculos.php";
+    }else{
+        include "./paginas/home.php";
+    }
+
     ?>
     
 </main>
+<?php
+ }
+?>
 </body>
 </html>

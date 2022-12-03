@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+//include "config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,7 @@ include "config.php";
     <div style="width:60vw; margin:0 auto;">
             <h1>Login</h1>
             <hr/>
-            <form method="post" action="<?php echo URL_BASE?>autenticar.php">
+            <form method="post" action="<?php echo URL_BASE?>">
     <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

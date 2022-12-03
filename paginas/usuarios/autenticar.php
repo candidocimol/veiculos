@@ -34,10 +34,11 @@ if(isset($_POST['submit'])){
         $msg['msg']="Falhao!";
         $msg['class']="danger";
         $_SESSION['msgs'][]=$msg;        
-    }  
+    } 
+    header("Location: index.php"); 
 }   
  
 #recarega para a página inicial
-header("Location: index.php");
+//header("Location: index.php");
 
 
